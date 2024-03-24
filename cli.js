@@ -26,19 +26,20 @@ async function createReactApp(appName) {
   const projectRoot = path.join(process.cwd(), appName);
   const srcDir = path.join(projectRoot, 'src');
   const distDir = path.join(projectRoot, 'dist');
-  const templateDir = path.join(projectRoot, 'templates', 'dist'); // Adjusted template directory path
+  // const templateDir = path.join(projectRoot, 'templates', 'dist'); // Adjusted template directory path
   
   // Create project directories
   fs.mkdirSync(projectRoot, { recursive: true });
   fs.mkdirSync(srcDir);
   fs.mkdirSync(distDir);
-  fs.mkdirSync(path.join(projectRoot, 'templates', 'dist'), { recursive: true }); // Ensure template/dist directory is created
+  // fs.mkdirSync(path.join(projectRoot, 'templates', 'dist'), { recursive: true }); // Ensure template/dist directory is created
 
   // Copy template files to project directory
-  fs.copyFileSync(path.resolve(__dirname, 'templates/dist/index.html'), path.join(templateDir, 'index.html')); // Adjusted file path
+  fs.copyFileSync(path.resolve(__dirname, 'templates/dist/index.html'), path.join(distDir, 'index.html')); // Adjusted file path
   fs.copyFileSync(path.resolve(__dirname, 'templates/src/App.js'), path.join(srcDir, 'App.js')); // Adjusted file path
   fs.copyFileSync(path.resolve(__dirname, 'templates/src/index.js'), path.join(srcDir, 'index.js')); // Adjusted file path
   fs.copyFileSync(path.resolve(__dirname, 'templates/src/other.js'), path.join(srcDir, 'other.js')); // Adjusted file path
+  fs.copyFileSync(path.resolve(__dirname, 'templates/webpack.config.js'), path.join(projectRoot, 'webpack.config.js')); 
   
   // Create package.json
   const packageJson = {
@@ -47,6 +48,7 @@ async function createReactApp(appName) {
     private: true,
     dependencies: {
       react: '^18.2.0',
+      'webpack': '^5.91.0',
       'react-dom': '^18.2.0',
       'react-scripts': '5.0.1',
       'web-vitals': '^2.1.4'
