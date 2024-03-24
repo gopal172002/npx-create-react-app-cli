@@ -7,7 +7,7 @@
 <body>
     <div class="container">
         <h1>README</h1>
-        <p>node cli.js <app-name></p>
+        <p>node cli.js app-name</p>
     </div>
 </body>
 </html>
